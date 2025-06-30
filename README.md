@@ -1,21 +1,23 @@
 # mcp-core Docker Image
 
-**Version:** v2.0.0
+**Version:** v2.0.3
 
 ## Changelog
 
-- **v2.0.0** (YYYY-MM-DD)
+- **v2.0.3** (2025-06-30)
+  - Resolve redis dependency conflict
+- **v2.0.0** (2025-06-30)
   - Major v2: `/v1/` API versioning, OpenAPI schema support
   - JWT-based auth & RBAC, rate limiting via SlowAPI
   - Alpine multi-stage build with unprivileged users
   - Added caching (`redis`), messaging (`kafka-python`), and `pydantic-settings`
   - Exposed `/v1/health` & `/v1/metrics` endpoints (Prometheus)
-- **v1.0.2** (YYYY-MM-DD)
+- **v1.0.2** (2025-06-30)
   - Remediated CVEs: upgraded httpx, uvicorn, pydantic, python-dotenv
   - Enhanced security: non-root user, multi-stage build, metrics endpoint
-- **v1.0.1** (YYYY-MM-DD)
+- **v1.0.1** (2025-06-30)
   - Initial CVE patch release: uvicorn, pydantic, python-dotenv
-- **v1.0.0** (YYYY-MM-DD)
+- **v1.0.0** (2025-06-30)
   - Initial release: basic FastAPI orchestrator, health and brief API
 
 ---
@@ -48,11 +50,11 @@
 
 3. **Build & Run**  
    ```
-   docker build -t mholownych/mcp-core:v2.0.0 .
+   docker build -t mholownych/mcp-core:v2.0.3 .
    docker run -d --name mcp-core \
      -p 8000:8000 \
      --env-file .env \
-     mholownych/mcp-core:v2.0.0
+     mholownych/mcp-core:v2.0.3
    ```
 
 4. **Verify**  
