@@ -1,9 +1,11 @@
 # mcp-core Docker Image
 
-**Version:** v2.0.5
+**Version:** v2.0.6
 
 ## Changelog
 
+- **v2.0.6** (2025-06-30)
+  - Remediated open CVEs: upgrade pypi/starlette and pypi/fastapi
 - **v2.0.5** (2025-06-30)
   - Updated README.md with correct version
 - **v2.0.4**
