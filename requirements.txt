@@ -1,5 +1,5 @@
 fastapi
-uvicorn[standard]
-pydantic
+uvicorn[standard]>=0.22.0
+pydantic>=2.4.0
 httpx
-python-dotenv
+python-dotenv>=1.0.0
