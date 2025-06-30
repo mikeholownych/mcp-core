@@ -8,6 +8,7 @@ We’ve patched known vulnerabilities:
 - CVE-2025-6020: uvicorn upgraded to `>=0.22.0`
 - CVE-2025-47273: pydantic upgraded to `>=2.4.0`
 - CVE-2025-6345: python-dotenv upgraded to `>=1.0.0`
+- CVE-2024-6348: httpx upgraded to `>=0.26.0`
 
 ## Files
 
