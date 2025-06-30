@@ -1,16 +1,18 @@
-# Base image
-FROM python:3.11-slim
-
-# Set working directory
-WORKDIR /app
-
-# Copy and install dependencies
+# Builder stage (unprivileged, Alpine)
+FROM python:3.11-alpine AS builder
+RUN addgroup -S builder && adduser -S builder -G builder
+WORKDIR /home/builder/app
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --user --no-cache-dir -r requirements.txt
 
-# Copy application
+# Runtime stage
+FROM python:3.11-alpine
+RUN addgroup -S mcpuser && adduser -S mcpuser -G mcpuser
+WORKDIR /app
+COPY --from=builder /home/builder/.local /home/builder/.local
+ENV PATH=/home/builder/.local/bin:$PATH
 COPY app.py ./
 
-# Expose port and run
+USER mcpuser
 EXPOSE 8000
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "30"]
