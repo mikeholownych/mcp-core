@@ -1,9 +1,13 @@
 # mcp-core Docker Image
 
-**Version:** v2.0.3
+**Version:** v2.0.5
 
 ## Changelog
 
+- **v2.0.5** (2025-06-30)
+  - Updated README.md with correct version
+- **v2.0.4**
+  - Updated Dockerfile fix and requirements.txt conflicts
 - **v2.0.3** (2025-06-30)
   - Resolve redis dependency conflict
 - **v2.0.0** (2025-06-30)
@@ -50,11 +54,11 @@
 
 3. **Build & Run**  
    ```
-   docker build -t mholownych/mcp-core:v2.0.3 .
+   docker build -t mholownych/mcp-core:latest .
    docker run -d --name mcp-core \
      -p 8000:8000 \
      --env-file .env \
-     mholownych/mcp-core:v2.0.3
+     mholownych/mcp-core:latest
    ```
 
 4. **Verify**  
