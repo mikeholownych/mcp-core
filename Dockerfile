@@ -1,16 +1,17 @@
-# Builder stage (unprivileged, Alpine)
+# Builder stage (install dependencies into /install)
 FROM python:3.11-alpine AS builder
-RUN addgroup -S builder && adduser -S builder -G builder
-WORKDIR /home/builder/app
+WORKDIR /app
 COPY requirements.txt ./
-RUN pip install --user --no-cache-dir -r requirements.txt
+RUN pip install --prefix=/install --no-cache-dir -r requirements.txt
 
 # Runtime stage
 FROM python:3.11-alpine
 RUN addgroup -S mcpuser && adduser -S mcpuser -G mcpuser
 WORKDIR /app
-COPY --from=builder /home/builder/.local /home/builder/.local
-ENV PATH=/home/builder/.local/bin:$PATH
+# Copy installed packages
+COPY --from=builder /install /usr/local
+# Adjust PATH to include installed binaries
+ENV PATH=/usr/local/bin:$PATH
 COPY app.py ./
 
 USER mcpuser
